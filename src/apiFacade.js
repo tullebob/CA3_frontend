@@ -19,6 +19,14 @@ function getDigitalOceanInfo() {
     .then(handleHttpErrors);
 }
 
+function searchWord(word) {
+    const URL = "http://localhost:8080/CA3_3SEM/api/dictionary/search";
+    //const URL = "https://api.chucknorris.io/jokes/random";
+    const options = makeOptions("POST", true, {word});
+    return fetch(URL, options)
+    .then(handleHttpErrors);
+}
+
 const setToken = (token) => {
     localStorage.setItem('jwtToken', token)
 }
@@ -44,6 +52,7 @@ const apiFacade = {
     getServicePoints,
     getMovieReviews,
     getDigitalOceanInfo,
+    searchWord,
     setToken,
     getToken,
     loggedIn,

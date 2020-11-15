@@ -9,51 +9,7 @@ import jwt_decode from "jwt-decode";
 export function Home() {
     return (
         <div>
-            <div>
-                <h2>Welcome!</h2>
-                <hr></hr>
-            </div>
-            <div>
-                <h5>How to use our API?</h5>
-                    <ul>
-                    <li>For all visitors of the website:</li>
-                        <ul>
-                            <li>The "Home" tab:</li>
-                            <ul>
-                                <li>This page!</li>
-                            </ul>
-                            <li>The "Address Info" tab:</li>
-                            <ul>
-                                <li>Enter an address and find the nearest postal box as well as a weather report from the city you entered.</li>
-                            </ul>
-                            <li>The "Login" tab:</li>
-                            <ul>
-                                <li>Login and gain access to more content!</li>
-                            </ul>
-                        </ul>
-
-                        <br></br>
-
-                        <li>If you're logged in (more content):</li>
-                        <ul>
-                            <li>As user:</li>
-                            <ul>
-                                <li>The "Movies" tab:</li>
-                                <ul>
-                                    <li>Enter a movie title, and get a corresponding review summary and a link to the full review from the New York Times.</li>
-                                </ul>
-                            </ul>
-                            <li>As admin:</li>
-                            <ul>
-                                <li>The "Digital Ocean Info" tab:</li>
-                                <ul>
-                                    <li>Lookup information about the Droplets that the hoster has.</li>
-                                </ul>
-                            </ul>
-                        </ul>
-
-                    </ul>
-            </div>
+            <p>Backend and frontend code was cloned, and used for this project. I did not make the huge adjustments, other than "adding" more to front end and backend, such an extra endpoint.</p>
         </div>
     );
 }
@@ -94,6 +50,7 @@ console.log(decoded);
         </div>
     )
 }
+
 
 export function DigitalOcean() {
 
@@ -196,6 +153,38 @@ export function Movies() {
             </div>
         </div>
     );
+}
+
+export function SearchWord() {
+
+    const[searchWord, setSearchWord] = useState("");
+    const[wordArray, setWordArray] = useState([]);
+
+    const displayWord = wordArray.map((word, index)=> (
+        <div>
+            
+                {word[0]}
+        </div>
+    )
+    )
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        apiFacade.searchWord(searchWord)
+        .then(data =>{
+            const array = data;
+            setWordArray(array);
+            console.log(array);
+        })
+    }
+
+    return (
+        <div>
+            <input placeholder="Enter word" onChange={(event) => setSearchWord(event.target.value)} />
+            <button onClick={handleSubmit}>Search</button>
+            {displayWord}
+        </div>
+    )
 }
 
 export function Address() {
