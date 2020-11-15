@@ -20,7 +20,7 @@ function getDigitalOceanInfo() {
 }
 
 function searchWord(word) {
-    const URL = "http://localhost:8080/CA3_3SEM/api/dictionary/search";
+    const URL = "https://tullebob.com/CA3_backend/api/dictionary/search";
     //const URL = "https://api.chucknorris.io/jokes/random";
     const options = makeOptions("POST", true, {word});
     return fetch(URL, options)

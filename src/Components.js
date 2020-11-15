@@ -160,20 +160,18 @@ export function SearchWord() {
     const[searchWord, setSearchWord] = useState("");
     const[wordArray, setWordArray] = useState([]);
 
-    const displayWord = wordArray.map((word, index)=> (
-        <div>
-            
-                {word.word}
-               
-        </div>
-    )
-    )
+    const displayArray = wordArray.map((word, index) => (
+        <li key={index}>
+            <p>Word: {word.word}</p>
+            <p>Definition: {word.meanings[0].definitions[0].definition}</p>
+            <p>Example: {word.meanings[0].definitions[0].example}</p>
+        </li>
+    ))
 
     const handleSubmit = event => {
         event.preventDefault();
         apiFacade.searchWord(searchWord)
-        .then(data =>{
-            const array = data;
+        .then(array =>{
             setWordArray(array);
             console.log(array);
         })
@@ -183,7 +181,10 @@ export function SearchWord() {
         <div>
             <input placeholder="Enter word" onChange={(event) => setSearchWord(event.target.value)} />
             <button onClick={handleSubmit}>Search</button>
-            {displayWord}
+
+            <ul>
+                {displayArray}
+            </ul>
         </div>
     )
 }
