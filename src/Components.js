@@ -163,7 +163,8 @@ export function SearchWord() {
     const displayWord = wordArray.map((word, index)=> (
         <div>
             
-                {word[0]}
+                {word.word}
+               
         </div>
     )
     )
